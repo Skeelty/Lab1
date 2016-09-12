@@ -1,16 +1,10 @@
 ﻿using System;
-using System.Collections.Generic;
 using System.IO;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
 
 namespace ConsoleApplication1
 {
     class Program
     {
-        private static int i;
-
         static void Main(string[] args)
         {
             int j, k = 0;
@@ -34,8 +28,7 @@ namespace ConsoleApplication1
                 Console.ReadLine();
                 return;
             }
-                
-                
+                             
 
             for (int i = 0; i < splitText.Length / 3; i++)
             {
@@ -45,10 +38,8 @@ namespace ConsoleApplication1
                 }
 
                 Console.WriteLine();
-
-
-
             }
+
             Console.WriteLine();
             int z = 0;
             for (int i = 0; i < splitText.Length/3; i++)
