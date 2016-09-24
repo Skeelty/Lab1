@@ -7,12 +7,14 @@ namespace ConsoleApplication1
     {
         static void Main(string[] args)
         {
-            int j, k = 0;
+            int z = 0;
+            int k = 0;
             var fileText = File.ReadAllText("Input.txt");
             var splitText = fileText.Split(new string[] { "\r\n", " " }, StringSplitOptions.None);
             
             int[,] table = new int[splitText.Length / 3,3];
             int counter = 0;
+
             for (int i=0; i<splitText.Length/3;i++)
             {
                 for(int p=0;p<3;p++)
@@ -32,7 +34,7 @@ namespace ConsoleApplication1
 
             for (int i = 0; i < splitText.Length / 3; i++)
             {
-                for (j = 0; j < 3; j++)
+                for (int j = 0; j < 3; j++)
                 {
                     Console.Write(table[i, j] + " ");
                 }
@@ -41,7 +43,7 @@ namespace ConsoleApplication1
             }
 
             Console.WriteLine();
-            int z = 0;
+            
             for (int i = 0; i < splitText.Length/3; i++)
             {
                 if (table[i, 2] == 1 && table[i, 1] > k)
