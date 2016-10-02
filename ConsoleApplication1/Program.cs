@@ -7,62 +7,44 @@ namespace ConsoleApplication1
     {
         static void Main(string[] args)
         {
-            int z = 0;
-            int k = 0;
-            var fileText = File.ReadAllText("Input.txt");
-            var splitText = fileText.Split(new string[] { "\r\n", " " }, StringSplitOptions.None);
-            
-            int[,] table = new int[splitText.Length / 3,3];
-            int counter = 0;
+            int id = -1;//
+            int yearsOld = 0;
+            var fileText = File.ReadAllLines("input.txt");
 
-            for (int i=0; i<splitText.Length/3;i++)
+            if(fileText.Length <= 1)
             {
-                for(int p=0;p<3;p++)
-                {
-                    table[i, p] = Convert.ToInt32(splitText[counter]);
-                    counter++;
-                }
+                File.WriteAllText("Output.txt", id.ToString());
             }
 
-            if (table.Length/3>100)
-            {
-                Console.WriteLine("Количество жителей больше 100");
-                Console.ReadLine();
-                return;
-            }
-                             
+            int n = Convert.ToInt32(fileText[0]);
 
-            for (int i = 0; i < splitText.Length / 3; i++)
+            if (n > 100)
             {
-                for (int j = 0; j < 3; j++)
-                {
-                    Console.Write(table[i, j] + " ");
-                }
-
-                Console.WriteLine();
+                File.WriteAllText("Output.txt", id.ToString());
             }
 
-            Console.WriteLine();
-            
-            for (int i = 0; i < splitText.Length/3; i++)
+            int[,] table = new int[n, 3];
+
+            for (int i = 1; i< n+1; i++)
             {
-                if (table[i, 2] == 1 && table[i, 1] > k)
+               var splitText = fileText[i].Split(' ');
+               table[i-1, 0] = Convert.ToInt32(splitText[0]);
+               table[i-1, 1] = Convert.ToInt32(splitText[1]);
+               table[i-1, 2] = i;
+            }
+
+            for (int i = 0; i < table.Length/3; i++)
+            {
+                if (table[i, 1] == 1 && table[i, 0] <= 100 && table[i, 0] > 0 && table[i, 0] > yearsOld)
                 {
-                    k = table[i, 1];                    
-                    z = table[i, 0];
+                    yearsOld = table[i, 0];
+                    id = table[i, 2];
                 }
 
             }
 
-            if (z == 0)
-                z = -1;
-
-            File.WriteAllText("Output.txt", z.ToString());
-           
-           Console.WriteLine(z);
-           Console.ReadKey();
-
+            File.WriteAllText("output.txt", id.ToString());
         }
-       
+
     }
 }
